@@ -1,13 +1,15 @@
 import { LinearGradient } from "expo-linear-gradient";
-import { Image, Text, View } from "react-native";
+import { useRouter } from "expo-router";
+import { Image, Text, TouchableOpacity, View } from "react-native";
 import {
   heightPercentageToDP as hp,
   widthPercentageToDP as wp,
 } from "react-native-responsive-screen";
 
 export default function WelcomeScreen() {
+  const router = useRouter();
   return (
-    <View className={`flex-1 flex justify-center`}>
+    <View className={`flex-1 flex justify-end`}>
       <Image
         source={require("../assets/images/welcome.png")}
         className={`h-full w-full absolute`}
@@ -19,16 +21,35 @@ export default function WelcomeScreen() {
           style={{ width: wp(100), height: hp(60) }}
           start={{ x: 0.5, y: 0 }}
           end={{ x: 0.5, y: 1 }}
-          className={`absolute`}
+          className={`absolute bottom-0`}
         />
         <View className={`space-y-3`}>
           <Text
-            className={`text-white font-bold text-xl`}
+            className={`text-white font-bold text-5xl`}
             style={{ fontSize: wp(10) }}
           >
             Facilitando as viagens
           </Text>
+          <Text
+            className={`text-neutral-200 font-medium`}
+            style={{ fontSize: wp(4) }}
+          >
+            Vivencie as melhores aventuras do mundo conosco!
+          </Text>
         </View>
+        <TouchableOpacity
+          onPress={() => {
+            router.push("home");
+          }}
+          className={`bg-orange-500 mx-auto p-3 px-12 rounded-full`}
+        >
+          <Text
+            className={`text-white font-bold`}
+            style={{ fontSize: wp(5.5) }}
+          >
+            Vamos lá
+          </Text>
+        </TouchableOpacity>
       </View>
     </View>
   );
